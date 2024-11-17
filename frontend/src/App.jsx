@@ -4,6 +4,7 @@
     import ComposeEmail from "./components/ComposeEmail";
     import EmailViewer from "./components/EmailViewer";
     import ReplyForm from "./components/ReplyForm";
+    import GlitteringSea from "./components/GlitteringSea";
     import { X, Moon, Sun, Menu } from 'lucide-react';
 
     function App() {
@@ -391,6 +392,7 @@
 
     return (
         <div className="flex flex-col h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-all duration-300">
+        <GlitteringSea />
         {notification && (
             <div 
             className={`fixed top-4 right-4 px-6 py-3 rounded-lg shadow-lg transform transition-all duration-500
