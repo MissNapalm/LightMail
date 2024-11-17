@@ -1,31 +1,44 @@
-import React from 'react';
-
-function Sidebar({ view, setView, setShowCompose }) {
+const Sidebar = ({ view, setView, setShowCompose }) => {
+    const folders = [
+      { name: 'Inbox', value: 'inbox', icon: '📥' },
+      { name: 'Sent', value: 'sent', icon: '📤' },
+      { name: 'Drafts', value: 'drafts', icon: '📝' },
+      { name: 'Archive', value: 'archive', icon: '🗄️' }
+    ];
+  
     return (
-        <div className="w-64 p-4 bg-white dark:bg-gray-800 shadow-lg h-screen">
-            <button
-                onClick={() => setShowCompose(true)}
-                className="w-full mb-4 py-3 px-4 rounded-lg bg-blue-500 text-white font-medium hover:bg-blue-600 transition"
-            >
-                ✏️ Compose
-            </button>
-            <div className="space-y-2">
-                {['Inbox', 'Sent', 'Drafts', 'Archive'].map((folder) => (
-                    <button
-                        key={folder}
-                        onClick={() => setView(folder.toLowerCase())}
-                        className={`w-full px-4 py-2 text-left rounded-lg ${
-                            view === folder.toLowerCase()
-                                ? 'bg-blue-100 text-blue-700 dark:bg-blue-900 dark:text-blue-400'
-                                : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-300'
-                        }`}
-                    >
-                        {folder}
-                    </button>
-                ))}
-            </div>
+      <div className="h-full min-h-screen bg-white dark:bg-gray-800 w-64 border-r border-gray-200 dark:border-gray-700 transition-colors duration-300 shrink-0">
+        <div className="p-4 sticky top-0">
+          <button
+            onClick={() => setShowCompose(true)}
+            className="w-full py-3 px-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-lg 
+              hover:shadow-lg hover:scale-105 transition-all duration-300 transform mb-6 flex items-center justify-center space-x-2"
+          >
+            <span>✏️</span>
+            <span className="font-semibold">Compose</span>
+          </button>
+          
+          <nav className="space-y-2">
+            {folders.map(folder => (
+              <button
+                key={folder.value}
+                onClick={() => setView(folder.value)}
+                className={`
+                  w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-300
+                  ${view === folder.value 
+                    ? 'bg-blue-500 text-white shadow-md transform scale-105' 
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+                  }
+                `}
+              >
+                <span className="text-xl">{folder.icon}</span>
+                <span className="font-medium">{folder.name}</span>
+              </button>
+            ))}
+          </nav>
         </div>
+      </div>
     );
-}
-
-export default Sidebar;
+  };
+  
+  export default Sidebar;
